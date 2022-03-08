@@ -9,7 +9,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
-    var tts: TextToSpeech? = null
+    private var tts: TextToSpeech? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private fun speak() {
         var message: String = findViewById<TextView>(R.id.et_message).text.toString()
         if(message.isEmpty()){
-            findViewById<TextView>(R.id.tv_status).text = "Introduzca un texto"
+            findViewById<TextView>(R.id.tv_status).text = getString(R.string.text_insert_text)
             message = "¿Es enserio? Ponga algo en el Edit text!"
         }
         tts!!.speak(message, TextToSpeech.QUEUE_FLUSH, null, "")
@@ -28,10 +28,10 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            findViewById<TextView>(R.id.tv_status).text = "Hello kotlin!"
+            findViewById<TextView>(R.id.tv_status).text = getString(R.string.tts_active)
             tts!!.language = Locale("ES")
         } else {
-            findViewById<TextView>(R.id.tv_status).text = "No disponible :("
+            findViewById<TextView>(R.id.tv_status).text = getString(R.string.tts_no_active)
         }
     }
 
