@@ -23,4 +23,21 @@ fun main() {
     println(myUser)
     println(bro)
     println(friend)
+
+    //------------Funciones de alcance
+    with(smartphone){
+        println("Privado? $isPrivate")
+        call()
+    }
+    /*
+    friend.group= Group.WORK.ordinal
+    friend.name = "Juan"
+    friend.lastName = "Reto"
+    */
+    friend.apply {
+        group = Group.WORK.ordinal
+        name = "Juan"
+        lastName = "Reto"
+    }
+    println(friend)
 }
