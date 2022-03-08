@@ -9,6 +9,13 @@ fun main() {
     //---------------Herencias-----
     val smartphone = Smartphone(3456723, true)
     smartphone.call()
+
+    //---------------Sobreescritura-----
     smartphone.showNumber()
     println("es privado? ${smartphone.isPrivate}")
+
+    //------------Data Clasess
+    val myUser = User(0, "Arthur", "Dioses", 0)
+    println(myUser.component3())
+    println(myUser)
 }
