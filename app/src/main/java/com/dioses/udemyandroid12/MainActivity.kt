@@ -18,7 +18,11 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     private fun speak() {
-        val message: String = findViewById<TextView>(R.id.et_message).text.toString()
+        var message: String = findViewById<TextView>(R.id.et_message).text.toString()
+        if(message.isEmpty()){
+            findViewById<TextView>(R.id.tv_status).text = "Introduzca un texto"
+            message = "¿Es enserio? Ponga algo en el Edit text!"
+        }
         tts!!.speak(message, TextToSpeech.QUEUE_FLUSH, null, "")
     }
 
@@ -29,5 +33,13 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         } else {
             findViewById<TextView>(R.id.tv_status).text = "No disponible :("
         }
+    }
+
+    override fun onDestroy() {
+        if (tts != null) {
+            tts!!.stop()
+            tts!!.shutdown()
+        }
+        super.onDestroy()
     }
 }
